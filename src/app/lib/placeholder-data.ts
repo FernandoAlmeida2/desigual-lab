@@ -138,7 +138,7 @@ export const indicatorsList: IndicatorGroup[] = [
   },
   {
     id: 2,
-    subject: "POPULAÇÃO",
+    subject: "População",
     indicators: [
       {
         indicatorId: 3,
@@ -166,6 +166,18 @@ export const indicatorsList: IndicatorGroup[] = [
   },
 ];
 
+export const subjectsList = [
+  "Saúde",
+  "População",
+  "Habitação",
+  "Educação",
+  "Esporte e lazer",
+  "Mobilidade urbana",
+  "Segurança",
+  "Meio ambiente",
+  "Saneamento básico"
+];
+
 export const InitialMenu = {
   desigualLab: true,
   team: false,
@@ -175,5 +187,5 @@ export const InitialMenu = {
   projects: false,
   publications: false,
   schedule: false,
-  press: false
+  press: false,
 };

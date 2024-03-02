@@ -12,17 +12,20 @@ type Props = {
 };
 
 export default function DesigualMap({ changeTopic }: Props) {
-  const [selectedSubject, setSelectedSubject] = useState(
-    indicatorsList[0].subject
-  );
-  const [selectedIndicator, setSelectedIndicator] = useState(
-    indicatorsList[0].indicators[0].title
-  );
+  const [selectedSubject, setSelectedSubject] = useState("none");
+  const [selectedIndicator, setSelectedIndicator] = useState("none");
   const ref = useRef<HTMLDivElement>(null);
 
-  const currentIndicator = indicatorsList
-    .filter((indicatorGroup) => indicatorGroup.subject === selectedSubject)[0]
-    .indicators.filter((indicator) => indicator.title === selectedIndicator)[0];
+  const currentIndicator =
+    selectedIndicator === "none"
+      ? null
+      : indicatorsList
+          .filter(
+            (indicatorGroup) => indicatorGroup.subject === selectedSubject
+          )[0]
+          .indicators.filter(
+            (indicator) => indicator.title === selectedIndicator
+          )[0];
 
   function changeSubject(newSubject: string) {
     setSelectedSubject(newSubject);
@@ -62,20 +65,24 @@ export default function DesigualMap({ changeTopic }: Props) {
           changeSubject={changeSubject}
           changeTopic={changeTopic}
         />
-        <MapContent
-          mapPath={currentIndicator.mapPath}
-          tablePath={currentIndicator.tablePath}
-        />
+        {currentIndicator && (
+          <MapContent
+            mapPath={currentIndicator.mapPath}
+            tablePath={currentIndicator.tablePath}
+          />
+        )}
       </div>
-      <MapValues
-        bestDistrict={currentIndicator.bestDistrict}
-        bestValue={currentIndicator.bestValue}
-        worseDistrict={currentIndicator.worseDistrict}
-        worseValue={currentIndicator.worseValue}
-        mean={currentIndicator.mean}
-        asymmetry={currentIndicator.asymmetry}
-        histogramPath={currentIndicator.histogramPath}
-      />
+      {currentIndicator && (
+        <MapValues
+          bestDistrict={currentIndicator.bestDistrict}
+          bestValue={currentIndicator.bestValue}
+          worseDistrict={currentIndicator.worseDistrict}
+          worseValue={currentIndicator.worseValue}
+          mean={currentIndicator.mean}
+          asymmetry={currentIndicator.asymmetry}
+          histogramPath={currentIndicator.histogramPath}
+        />
+      )}
     </Styles.Container>
   );
 }
