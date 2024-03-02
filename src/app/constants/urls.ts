@@ -1,0 +1,1 @@
+export const IFRAME_BASE_URL = "https://datawrapper.dwcdn.net"
