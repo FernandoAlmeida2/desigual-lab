@@ -10,6 +10,7 @@ type Props = {
   changeSubject: Function;
   currentIndicator: Indicator;
   changeIndicator: Function;
+  changeTopic: Function;
 };
 
 export default function TabPanel({
@@ -17,12 +18,16 @@ export default function TabPanel({
   changeSubject,
   currentIndicator,
   changeIndicator,
+  changeTopic
 }: Props) {
   return (
     <Styles.Container>
+      <Styles.ReturnOption onClick={() => changeTopic("Quem-somos")}>
+          Desigual Lab
+        </Styles.ReturnOption>
       <Styles.SelectContainer>
+        <Styles.LogoMap src="/images/logos/logo-map.svg" alt="logo panel" />
         <Styles.SelectBox>
-          Eixo temático:
           <Styles.SelectItem
             value={selectedSubject}
             onChange={(e: ChangeEvent<HTMLSelectElement>) =>
@@ -38,7 +43,6 @@ export default function TabPanel({
         </Styles.SelectBox>
 
         <Styles.SelectBox>
-          Indicador:
           <Styles.SelectItem
             value={currentIndicator.title}
             onChange={(e: ChangeEvent<HTMLSelectElement>) =>

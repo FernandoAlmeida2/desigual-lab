@@ -1,15 +1,30 @@
 import { styled } from "styled-components";
 
 const Container = styled.div`
-  width: 30.56vw;
-  max-width: 30.56vw;
-  height: 100vh;
+  width: 50vw;
+  height: 84vw;
   display: flex;
   flex-direction: column;
   gap: 8vw;
-  padding-top: 3vw;
   z-index: 1;
+  position: relative;
 `;
+
+const ReturnOption = styled.div`
+  position: absolute;
+  top: 1.5vw;
+  left: 40vw;
+  color: green;
+
+  &:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+`;
+
+const LogoMap = styled.img`
+  width: 7vw;
+`
 
 const SelectContainer = styled.div`
   display: flex;
@@ -52,6 +67,8 @@ const InfoBox = styled.div`
 
 export const Styles = {
   Container,
+  ReturnOption,
+  LogoMap,
   SelectContainer,
   SelectBox,
   SelectItem,

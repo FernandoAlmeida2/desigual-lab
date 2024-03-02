@@ -54,19 +54,19 @@ export default function DesigualMap({ changeTopic }: Props) {
 
   return (
     <Styles.Container ref={ref}>
-      <Styles.ReturnOption onClick={() => changeTopic("Quem-somos")}>
-        Retornar à página principal
-      </Styles.ReturnOption>
-      <TabPanel
-        currentIndicator={currentIndicator}
-        selectedSubject={selectedSubject}
-        changeIndicator={changeIndicator}
-        changeSubject={changeSubject}
-      />
-      <MapContent
-        mapPath={currentIndicator.mapPath}
-        tablePath={currentIndicator.tablePath}
-      />
+      <div>
+        <TabPanel
+          currentIndicator={currentIndicator}
+          selectedSubject={selectedSubject}
+          changeIndicator={changeIndicator}
+          changeSubject={changeSubject}
+          changeTopic={changeTopic}
+        />
+        <MapContent
+          mapPath={currentIndicator.mapPath}
+          tablePath={currentIndicator.tablePath}
+        />
+      </div>
       <MapValues
         bestDistrict={currentIndicator.bestDistrict}
         bestValue={currentIndicator.bestValue}

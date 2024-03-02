@@ -1,9 +1,8 @@
 import { styled } from "styled-components";
 
 const Container = styled.div`
-  width: 41.11vw;
-  max-width: 41.11vw;
-  height: 100vh;
+  width: 50vw;
+  height: 84vw;
   z-index: 1;
 `;
 
