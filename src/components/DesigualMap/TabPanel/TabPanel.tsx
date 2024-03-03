@@ -24,7 +24,7 @@ export default function TabPanel({
 
   return (
     <Styles.Container>
-      <Styles.ReturnOption onClick={() => changeTopic("Quem-somos")}>
+      <Styles.ReturnOption onClick={() => changeTopic("initial")}>
         <span>&lt;&nbsp;</span>
         Desigual Lab
       </Styles.ReturnOption>
