@@ -1,82 +1,54 @@
 import { styled } from "styled-components";
 
 const Container = styled.div`
-  width: 19.65vw;
-  max-width: 19.65vw;
-  height: 100vh;
+  max-width: 100vw;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2vw;
-  padding-top: 3vw;
-  z-index: 1;
+  justify-content: center;
+  gap: 0.6vw;
 `;
 
 const HistogramBox = styled.div`
-  height: 25.7vw;
-  width: 19.44vw;
+  height: 15vw;
+  width: 24.25vw;
 `
 
-const MinMaxBox = styled.div`
-  background-color: #f0f0f0;
-  opacity: 0.7;
-  width: 19.44vw;
-  height: 15.97vw;
-  display: flex;
-  font-weight: 700;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 1vw;
-`;
-const MinMaxValue = styled.div<{
-  isBest: boolean;
+const ValueCard = styled.div<{
+  toggleInfo: boolean;
 }>`
-  font-size: 2vw;
-  color: ${(props) => (props.isBest ? "green" : "red")};
-`;
-
-const MeanBox = styled.div`
-  text-align: center;
-  width: 19.583vw;
-  height: 5.972vw;
-  background-color: #f0f0f0;
-  opacity: 0.7;
+  width: 24.25vw;
+  max-width: 24.25vw;
+  height: 15vw;
+  font-weight: 300;
+  background-color: ${(props) => props.toggleInfo ? "#000" : "#FFDD00"};
+  color: ${(props) => props.toggleInfo ? "#FFDD00" : "#000"};
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
+  font-size: 6vw;
+  position: relative;
 
-  span {
-    font-weight: 700;
+  &:hover {
+    cursor: pointer;
   }
 `;
 
-const AsimmetryBox = styled.div`
+const ValueDescription = styled.div<{
+  toggleInfo: boolean;
+}>`
+  position: absolute;
+  width: 15vw;
   text-align: center;
-  width: 19.583vw;
-  height: 5.972vw;
-  background-color: #FF5722;
-  opacity: 0.7;
-  color: #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.2vw;
-  gap: 1vw;
-  padding: 1vw 0;
-
-  span {
-    font-weight: 700;
-  }
+  top: 7.05vw;
+  left: 16vw;
+  rotate: 270deg;
+  font-size: 1vw;
+  color: ${(props) => props.toggleInfo ? "#FFDD00" : "#000"};
 `;
+
 
 export const Styles = {
   Container,
   HistogramBox,
-  MinMaxBox,
-  MinMaxValue,
-  MeanBox,
-  AsimmetryBox
+  ValueCard,
+  ValueDescription
 };

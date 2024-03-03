@@ -1,5 +1,6 @@
 import { IFRAME_BASE_URL } from "@/app/constants/urls";
 import { Styles } from "./mapValues.style";
+import ValueCard from "./ValueCard";
 
 type Props = {
   bestDistrict: string | number;
@@ -20,7 +21,6 @@ export default function MapValues({
   asymmetry,
   histogramPath,
 }: Props) {
-
   return (
     <Styles.Container>
       <Styles.HistogramBox>
@@ -30,41 +30,22 @@ export default function MapValues({
           width="100%"
           height="100%"
           style={{
-            background: "rgb(209, 209, 209, 0)",
             padding: "1vw",
-            borderRadius: "1vw",
           }}
         ></iframe>
       </Styles.HistogramBox>
 
-      <Styles.MinMaxBox>
-        <div>MAIOR/MENOR VALOR</div>
-        <Styles.MinMaxValue isBest={true}>
-          {bestValue.toLocaleString("pt-BR")}
-        </Styles.MinMaxValue>
-        <div>
-          {typeof bestDistrict === "number"
-            ? `Vários (${bestDistrict})`
-            : bestDistrict}
-        </div>
-        <Styles.MinMaxValue isBest={false}>
-          {worseValue.toLocaleString("pt-BR")}
-        </Styles.MinMaxValue>
-        <div>
-          {typeof worseDistrict === "number"
-            ? `Vários (${worseDistrict})`
-            : worseDistrict}
-        </div>
-      </Styles.MinMaxBox>
-      <Styles.MeanBox>
-        <span>Média de Fortaleza</span>
-        <br />
-        {mean.toLocaleString("pt-BR")}
-      </Styles.MeanBox>
-      <Styles.AsimmetryBox>
-        <span>Índice de Desigualdade</span>
-        {asymmetry.toLocaleString("pt-BR")}
-      </Styles.AsimmetryBox>
+      <ValueCard
+        value={`${worseValue.toLocaleString(
+          "pt-BR"
+        )}-${bestValue.toLocaleString("pt-BR")}`}
+        description="MENOR-MAIOR VALOR"
+      />
+      <ValueCard value={mean.toLocaleString("pt-BR")} description="MÉDIA" />
+      <ValueCard
+        value={asymmetry.toLocaleString("pt-BR")}
+        description="ÍNDICE DE DESIGUALDADE"
+      />
     </Styles.Container>
   );
 }
