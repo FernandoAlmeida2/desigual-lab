@@ -2,34 +2,29 @@ import { styled } from "styled-components";
 
 const Container = styled.div`
   width: 50vw;
-  height: 84vw;
-  z-index: 1;
+  height: 42vw;
+  position: relative;
 `;
 
-const NavBar = styled.div`
-  display: flex;
-`;
+const SelectItem = styled.select`
+  position: absolute;
+  left: 1vw;
+  top: 1vw;
+  width: 8vw;
+  font-size: 1.1vw;
+  font-weight: 400;
+  border-style: solid;
+  color: #005cca;
+  border-width: 0 0 0.1vw 0;
+  border-color: #000;
+  background-color: rgb(0,0,0,0);
 
-const NavItem = styled.div<{
-  isSelected: boolean;
-}>`
-  height: 2.92vw;
-  width: 4.86vw;
-  border: ${(props) => props.isSelected ? "0.1vw solid #d5d5d5" : "none"};
-  color: ${(props) => props.isSelected ? "#aaa" : "#FF5722"};
-  border-bottom: hidden;
-  border-radius: 0.3vw;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  &:hover {
-    cursor: pointer;
+  &:focus {
+    outline: none;
   }
 `;
 
 export const Styles = {
   Container,
-  NavBar,
-  NavItem
+  SelectItem
 };

@@ -54,7 +54,6 @@ const SelectContainer = styled.div<{
 
 const SelectItem = styled.select`
   width: 16.3vw;
- 
   font-size: 1.1vw;
   font-weight: 400;
   border-style: solid;
@@ -76,9 +75,9 @@ const SelectItem = styled.select`
 `;
 
 const SubtitleText = styled.div`
-  width: 45vw;
+  width: 46vw;
   font-size: 3vw;
-  line-height: 3.5vw;
+  line-height: 3.8vw;
   font-weight: 300;
 `
 
