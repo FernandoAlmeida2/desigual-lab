@@ -8,7 +8,7 @@ export const indicatorsList: IndicatorGroup[] = [
       {
         indicatorId: 1,
         title: "Idade Média ao Morrer",
-        subtitle: "Idade Média ao Morrer, por distrito",
+        subtitle: "Idade média ao morrer, por distrito",
         mapPath: "35MjM/2/",
         histogramPath: "j6Yvx/1/",
         tablePath: "buIGU/1/",
@@ -115,7 +115,7 @@ export const indicatorsList: IndicatorGroup[] = [
         indicatorId: 6,
         title: "Mortalidade por Doenças Crônicas Não Transmissíveis",
         subtitle:
-          "Número de óbitos (entre 30 e 69 anos) por DCNT registrados nos códigos CID-10 – I00-I99; C00-C97; J30-J98, exceto J36; E10-E14 – em determinado ano e local dividido pela população residente multiplicado por 100.000",
+          "Número de óbitos por DCNT dividido pela população residente multiplicado por 100.000",
         mapPath: "c7l1j/1/",
         histogramPath: "hPMm1/2/",
         tablePath: "sViRa/1/",
@@ -123,7 +123,7 @@ export const indicatorsList: IndicatorGroup[] = [
         formula:
           "Número de óbitos por Doenças Crônicas Não Transmissíveis ÷ população residente x 100.000",
         remarks:
-          "Para efeitos do cálculo foram consideradas doenças do aparelho circulatório, tumores malignos, diabetes mellitus e doenças crônicas respiratórias.",
+          "Para efeitos do cálculo foram consideradas doenças do aparelho circulatório, tumores malignos, diabetes mellitus e doenças crônicas respiratórias. Para o número de óbitos por DCNT, consideram-se os registros entre 30 e 69 anos contidos nos códigos CID-10 – I00-I99; C00-C97; J30-J98, exceto J36; E10-E14 - em determinado ano e local",
         year: 2021,
         source: "Secretaria Municipal de Saúde",
         bestDistrict: 3,

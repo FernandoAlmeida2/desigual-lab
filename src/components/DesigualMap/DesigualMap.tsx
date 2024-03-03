@@ -57,7 +57,7 @@ export default function DesigualMap({ changeTopic }: Props) {
 
   return (
     <Styles.Container ref={ref}>
-      <div>
+      <Styles.ContainerTop>
         <TabPanel
           currentIndicator={currentIndicator}
           selectedSubject={selectedSubject}
@@ -65,14 +65,19 @@ export default function DesigualMap({ changeTopic }: Props) {
           changeSubject={changeSubject}
           changeTopic={changeTopic}
         />
-        {currentIndicator && (
+        {currentIndicator ? (
           <MapContent
             mapPath={currentIndicator.mapPath}
             tablePath={currentIndicator.tablePath}
           />
+        ) : (
+          <Styles.InitialImgRight
+            src="/images/cover-top-1.png"
+            alt="cover-img"
+          />
         )}
-      </div>
-      {currentIndicator && (
+      </Styles.ContainerTop>
+      {currentIndicator ? (
         <MapValues
           bestDistrict={currentIndicator.bestDistrict}
           bestValue={currentIndicator.bestValue}
@@ -81,6 +86,11 @@ export default function DesigualMap({ changeTopic }: Props) {
           mean={currentIndicator.mean}
           asymmetry={currentIndicator.asymmetry}
           histogramPath={currentIndicator.histogramPath}
+        />
+      ) : (
+        <Styles.InitialImgBottom
+          src="/images/cover-map-bottom.png"
+          alt="cover-img"
         />
       )}
     </Styles.Container>

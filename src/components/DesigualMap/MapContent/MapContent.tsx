@@ -1,6 +1,6 @@
 "use client";
 
-import { MouseEventHandler, useState } from "react";
+import { useState } from "react";
 import { Styles } from "./mapContent.style";
 import { IFRAME_BASE_URL } from "@/app/constants/urls";
 

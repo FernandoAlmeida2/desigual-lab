@@ -1,12 +1,12 @@
 import { styled } from "styled-components";
 import { RiArrowLeftSLine } from "react-icons/ri";
+import { HiPlus, } from "react-icons/hi";
+import { FaPlus, FaMinus } from "react-icons/fa";
 
 const Container = styled.div`
   width: 50vw;
-  height: 84vw;
   display: flex;
   flex-direction: column;
-  gap: 16vw;
   z-index: 1;
   position: relative;
   padding: 2vw 0 0 2vw;
@@ -43,21 +43,18 @@ const LogoMap = styled.img`
   width: 7vw;
 `;
 
-const SelectContainer = styled.div`
+const SelectContainer = styled.div<{
+  toggleInfo: boolean;
+}>`
+  margin-top: ${(props) => props.toggleInfo ? "4vw" : "11vw"};
   display: flex;
   flex-direction: column;
-  gap: 3vw;
-`;
-
-const SelectBox = styled.label`
-  display: flex;
-  flex-direction: column;
-  gap: 1vw;
+  gap: 1.5vw;
 `;
 
 const SelectItem = styled.select`
   width: 16.3vw;
-  height: 2vw;
+ 
   font-size: 1.1vw;
   font-weight: 400;
   border-style: solid;
@@ -78,21 +75,59 @@ const SelectItem = styled.select`
   }
 `;
 
-const SelectOption = styled.option``;
+const SubtitleText = styled.div`
+  width: 45vw;
+  font-size: 3vw;
+  line-height: 3.5vw;
+  font-weight: 300;
+`
 
-const OdsIcon = styled.div`
-  height: 6vw;
-  img {
-    width: 4.72vw;
+const PlusIcon = styled(FaPlus)`
+  color: #005cca;
+  margin-top: 0.5vw;
+  font-size: 1.5vw;
+
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+const MinusIcon = styled(FaMinus)`
+  color: #005cca;
+  font-size: 1.5vw;
+  margin-top: 0.5vw;
+  margin-bottom: 0.5vw;
+
+  &:hover {
+    cursor: pointer;
   }
 `;
 
 const InfoBox = styled.div`
   font-size: 0.8vw;
   line-height: 1.6vw;
+  display: flex;
+  align-items: flex-end;
+  gap: 2vw;
+  font-weight: 300;
+  font-size: 0.6vw;
+  line-height: 0.8vw;
+
+  div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2vw;
+  }
+
   span {
-    color: green;
-    font-weight: 700;
+    font-weight: 400;
+  }
+`;
+
+const OdsIcon = styled.div`
+  padding: 0 1.5vw;
+  img {
+    width: 5.72vw;
   }
 `;
 
@@ -102,8 +137,10 @@ export const Styles = {
   ArrowLeftIcon,
   LogoMap,
   SelectContainer,
-  SelectBox,
   SelectItem,
+  SubtitleText,
+  PlusIcon,
+  MinusIcon,
   OdsIcon,
   InfoBox,
 };
