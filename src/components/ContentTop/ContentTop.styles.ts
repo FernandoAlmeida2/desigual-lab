@@ -6,9 +6,10 @@ const Container = styled.div<{
 }>`
   width: 52.34vw;
   height: 52.34vw;
+  text-align: left;
   border-top-right-radius: 18vw;
   background-color: ${(props) =>
-    props.currentTopic === "initial" ? "none" : "rgb(229, 196, 0, 0.7)"};
+    props.currentTopic === "initial" ? "none" : "rgb(229, 196, 0, 0.78)"};
   border: ${(props) =>
     props.currentTopic === "initial" ? "0.4vw solid #fff" : "none"};
   animation: ${(props) =>
@@ -20,7 +21,7 @@ const Container = styled.div<{
       background-color: rgb(229, 196, 0, 0);
     }
     100% {
-      background-color: rgb(229, 196, 0, 0.7);
+      background-color: rgb(229, 196, 0, 0.78);
     }
   }
 `;
@@ -60,12 +61,20 @@ const ContentTop = styled.div`
 
   h1 {
     font-size: 1.5vw;
+    line-height: 1.8vw;
+    margin-bottom: 1vw;
+    font-weight: 700;
+  }
+
+  h2 {
+    font-size: 1.1vw;
+    line-height: 1.4vw;
     margin-bottom: 1vw;
     font-weight: 700;
   }
 
   p {
-    text-align: justify;
+    text-align: left;
     font-size: 1vw;
     line-height: 1.3vw;
   }
