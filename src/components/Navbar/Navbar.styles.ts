@@ -39,6 +39,7 @@ const NavTitle = styled.div<{
 }>`
   width: 22.11vw;
   height: 4vw;
+  min-height: 4vw;
   font-size: 1.1vw;
   font-weight: 400;
   padding: 0 1vw;
@@ -48,7 +49,7 @@ const NavTitle = styled.div<{
   align-items: center;
   color: ${(props) => (props.isSelected ? "rgb(229, 196, 0, 1)" : "#000")};
   background-color: ${(props) =>
-    props.isSelected ? "rgb(0, 0, 0, 0.7)" : "rgb(229, 196, 0, 0.7)"};
+    props.isSelected ? "rgb(0, 0, 0, 0.7)" : "rgb(229, 196, 0, 0.78)"};
 
   &:hover {
     cursor: pointer;
@@ -62,6 +63,7 @@ const NavItem = styled.div<{
 }>`
   width: 21.51vw;
   height: 4vw;
+  min-height: 4vw;
   font-size: 1.1vw;
   font-weight: 400;
   padding: 0 1vw;
@@ -71,7 +73,7 @@ const NavItem = styled.div<{
   justify-content: space-between;
   color: ${(props) => (props.isSelected ? "rgb(229, 196, 0, 1)" : "#000")};
   background-color: ${(props) =>
-    props.isSelected ? "rgb(0, 0, 0, 0.7)" : "rgb(229, 196, 0, 0.7)"};
+    props.isSelected ? "rgb(0, 0, 0, 0.7)" : "rgb(229, 196, 0, 0.78)"};
   margin-left: 0.6vw;
 
   &:hover {
@@ -104,6 +106,7 @@ const NavSubItem = styled.div<{
 }>`
   width: 20.91vw;
   height: 3vw;
+  min-height: 3vw;
   font-size: 0.9vw;
   font-weight: 400;
   padding-left: 2vw;
