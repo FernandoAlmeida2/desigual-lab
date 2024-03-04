@@ -17,7 +17,7 @@ const cspHeader = `
 
 const nextConfig = {
   output: "standalone",
-  async headers() {
+  /*async headers() {
     return [
       {
         source: '/(.*)',
@@ -29,7 +29,7 @@ const nextConfig = {
         ],
       },
     ];
-  },
+  },*/
 };
 
 module.exports = nextConfig;
