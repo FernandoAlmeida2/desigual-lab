@@ -41,6 +41,10 @@ const ArrowLeftIcon = styled(RiArrowLeftSLine)`
 
 const LogoMap = styled.img`
   width: 7vw;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const SelectContainer = styled.div<{
@@ -57,7 +61,6 @@ const SelectItem = styled.select`
   font-size: 1.1vw;
   font-weight: 400;
   border-style: solid;
-  color: #afb2b5;
   border-width: 0 0 0.1vw 0;
   border-color: #000;
   background-color: #fff;
@@ -69,8 +72,9 @@ const SelectItem = styled.select`
   &:valid {
     color: #005cca;
   }
+
   &:invalid {
-    color: #afb2b5;
+    color: gray;
   }
 `;
 
@@ -79,6 +83,7 @@ const SubtitleText = styled.div`
   font-size: 3vw;
   line-height: 3.8vw;
   font-weight: 300;
+  text-align: left;
 `
 
 const PlusIcon = styled(FaPlus)`
