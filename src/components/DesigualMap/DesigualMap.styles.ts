@@ -23,6 +23,7 @@ const Container = styled.div`
 
 const ContainerTop = styled.div`
   display: flex;
+  max-width: 100vw;
   gap: 1vw;
   padding-bottom: 0.5vw;
 `
