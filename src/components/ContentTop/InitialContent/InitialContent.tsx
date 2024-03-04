@@ -5,9 +5,9 @@ export default function InitialContent() {
     <Styles.TitleText>
       Um ponto
       <br />
-      fora
+      fora da
       <br />
-      da curva.
+      curva.
     </Styles.TitleText>
   );
 }
