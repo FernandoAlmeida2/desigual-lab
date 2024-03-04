@@ -7,11 +7,11 @@ import { Styles } from "./DesigualMap.styles";
 import { useState, useRef, useEffect } from "react";
 import { indicatorsList } from "@/app/lib/placeholder-data";
 
-type Props = {
+/* type Props = {
   changeTopic: Function;
-};
+}; */
 
-export default function DesigualMap({ changeTopic }: Props) {
+export default function DesigualMap() {
   const [selectedSubject, setSelectedSubject] = useState("none");
   const [selectedIndicator, setSelectedIndicator] = useState("none");
   const ref = useRef<HTMLDivElement>(null);
@@ -63,7 +63,6 @@ export default function DesigualMap({ changeTopic }: Props) {
           selectedSubject={selectedSubject}
           changeIndicator={changeIndicator}
           changeSubject={changeSubject}
-          changeTopic={changeTopic}
         />
         {currentIndicator ? (
           <MapContent
@@ -72,7 +71,7 @@ export default function DesigualMap({ changeTopic }: Props) {
           />
         ) : (
           <Styles.InitialImgRight
-            src="/images/cover-top-1.png"
+            src="/images/cover-map-top.png"
             alt="cover-img"
           />
         )}
