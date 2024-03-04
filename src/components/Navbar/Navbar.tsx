@@ -6,14 +6,20 @@ import { MouseEventHandler, useState } from "react";
 import { Styles } from "./Navbar.styles";
 import { ArrowMenu } from "@/app/lib/definitions";
 import { InitialMenu } from "@/app/lib/placeholder-data";
+import { useSelector } from "react-redux";
+import { RootState } from "@/app/lib/store";
+import { useDispatch } from "react-redux";
+import { changeTopic } from "@/app/lib/features/topics/topicSlice";
 
-type Props = {
+/* type Props = {
   currentTopic: string;
   changeTopic: Function;
-};
+}; */
 
-export default function NavBar({ currentTopic, changeTopic }: Props) {
+export default function NavBar() {
   const [arrowClicked, setArrowClicked] = useState(InitialMenu);
+  const { currentTopic } = useSelector((state: RootState) => state.topic);
+  const dispatch = useDispatch();
 
   function subItensHandler(name: ArrowMenu) {
     setArrowClicked({ ...arrowClicked, [name]: !arrowClicked[name] });
@@ -28,12 +34,18 @@ export default function NavBar({ currentTopic, changeTopic }: Props) {
             alt="logo desigual lab"
           />
           {currentTopic === "initial" ? (
-            <Styles.MenuIcon onClick={() => changeTopic("presentation")} />
+            <Styles.MenuIcon
+              id="menuIcon"
+              onClick={() => dispatch(changeTopic("presentation"))}
+            />
           ) : (
             <Styles.Navbar>
               <Styles.NavTitle
                 isSelected={false}
-                onClick={() => subItensHandler("desigualLab")}
+                onClick={() => {
+                  dispatch(changeTopic("presentation"));
+                  subItensHandler("desigualLab");
+                }}
               >
                 Desigual Lab
                 {arrowClicked.desigualLab ? (
@@ -46,65 +58,62 @@ export default function NavBar({ currentTopic, changeTopic }: Props) {
               {arrowClicked.desigualLab && (
                 <>
                   <Styles.NavItem
-                    isSelected={currentTopic === "presentation"}
-                    onClick={() => changeTopic("presentation")}
-                  >
-                    Apresentação
-                  </Styles.NavItem>
-                  <Styles.NavItem
-                    isSelected={false}
-                    onClick={() => subItensHandler("assignments")}
+                    isSelected={currentTopic === "assignments"}
+                    onClick={() => {
+                      dispatch(changeTopic("assignments"));
+                      subItensHandler("assignments");
+                    }}
                   >
                     Atribuições
-                    {arrowClicked.assignments ? (
+                    {/* {arrowClicked.assignments ? (
                       <Styles.ArrowUpIcon />
                     ) : (
                       <Styles.ArrowDownIcon />
-                    )}
+                    )} */}
                   </Styles.NavItem>
-                  {arrowClicked.assignments && (
+                  {/* {arrowClicked.assignments && (
                     <>
                       <Styles.NavSubItem
                         isSelected={currentTopic === "drawing"}
-                        onClick={() => changeTopic("drawing")}
+                        onClick={() => dispatch(changeTopic("drawing"))}
                       >
                         Desenha
                       </Styles.NavSubItem>
                       <Styles.NavSubItem
                         isSelected={currentTopic === "evaluate"}
-                        onClick={() => changeTopic("evaluate")}
+                        onClick={() => dispatch(changeTopic("evaluate"))}
                       >
                         Avalia
                       </Styles.NavSubItem>
                       <Styles.NavSubItem
                         isSelected={currentTopic === "accelerate"}
-                        onClick={() => changeTopic("accelerate")}
+                        onClick={() => dispatch(changeTopic("accelerate"))}
                       >
                         Acelera
                       </Styles.NavSubItem>
                     </>
-                  )}
+                  )} */}
                   <Styles.NavItem
                     isSelected={currentTopic === "legislation"}
-                    onClick={() => changeTopic("legislation")}
+                    onClick={() => dispatch(changeTopic("legislation"))}
                   >
                     Legislação
                   </Styles.NavItem>
                   <Styles.NavItem
                     isSelected={currentTopic === "regulation"}
-                    onClick={() => changeTopic("regulation")}
+                    onClick={() => dispatch(changeTopic("regulation"))}
                   >
                     Regulamento
                   </Styles.NavItem>
                   <Styles.NavItem
                     isSelected={currentTopic === "organization"}
-                    onClick={() => changeTopic("organization")}
+                    onClick={() => dispatch(changeTopic("organization"))}
                   >
                     Organograma
                   </Styles.NavItem>
                   <Styles.NavItem
                     isSelected={currentTopic === "address"}
-                    onClick={() => changeTopic("address")}
+                    onClick={() => dispatch(changeTopic("address"))}
                   >
                     Endereço
                   </Styles.NavItem>
@@ -175,7 +184,7 @@ export default function NavBar({ currentTopic, changeTopic }: Props) {
 
               <Styles.NavTitle
                 isSelected={false}
-                onClick={() => changeTopic("inequality-map")}
+                onClick={() => dispatch(changeTopic("inequality-map"))}
               >
                 Mapa da desigualdade (2023)
               </Styles.NavTitle>
@@ -212,7 +221,7 @@ export default function NavBar({ currentTopic, changeTopic }: Props) {
               </Styles.NavTitle>
               <Styles.NavTitle
                 isSelected={currentTopic === "press"}
-                onClick={() => changeTopic("press")}
+                onClick={() => dispatch(changeTopic("press"))}
               >
                 Imprensa
               </Styles.NavTitle>
@@ -238,7 +247,7 @@ export default function NavBar({ currentTopic, changeTopic }: Props) {
                   </Styles.NavItem>
                   <Styles.NavItem
                     isSelected={currentTopic === "training"}
-                    onClick={() => changeTopic("training")}
+                    onClick={() => dispatch(changeTopic("training"))}
                   >
                     Capacitação
                   </Styles.NavItem>
@@ -246,13 +255,13 @@ export default function NavBar({ currentTopic, changeTopic }: Props) {
               )}
               <Styles.NavTitle
                 isSelected={currentTopic === "contact"}
-                onClick={() => changeTopic("contact")}
+                onClick={() => dispatch(changeTopic("contact"))}
               >
                 Contato
               </Styles.NavTitle>
               <Styles.NavTitle
                 isSelected={false}
-                onClick={() => changeTopic("initial")}
+                onClick={() => dispatch(changeTopic("initial"))}
               >
                 Início
               </Styles.NavTitle>
