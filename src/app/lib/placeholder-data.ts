@@ -8,7 +8,7 @@ export const indicatorsList: IndicatorGroup[] = [
       {
         indicatorId: 1,
         title: "Idade Média ao Morrer",
-        subtitle: "Idade média ao morrer, por distrito",
+        subtitle: "Idade média ao morrer, por bairro",
         mapPath: "35MjM/2/",
         histogramPath: "j6Yvx/1/",
         tablePath: "buIGU/1/",
@@ -28,12 +28,12 @@ export const indicatorsList: IndicatorGroup[] = [
       {
         indicatorId: 2,
         title: "Gravidez na Adolescência",
-        subtitle: "Gravidez na Adolescência, por distrito",
-        mapPath: "HfGni/2/",
-        histogramPath: "gZABq/6/",
+        subtitle: "Percentual de nascidos vivos de mães adolescentes, por bairro",
+        mapPath: "gRPQe/5/",
+        histogramPath: "U7Gc0/1/",
         tablePath: "wVxkG/3/",
         odsPath: "SDG-3.svg",
-        formula: "Nascidos vivos de adolescentes ÷ número de nascidos vivos",
+        formula: "Média de Nascidos vivos de adolescentes ÷ número de nascidos vivos ",
         remarks:
           "Consideram-se adolescentes para este cálculo mulheres com até 19 anos",
         year: 2023,
