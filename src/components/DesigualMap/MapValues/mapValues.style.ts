@@ -10,6 +10,10 @@ const Container = styled.div`
 const HistogramBox = styled.div`
   height: 15vw;
   width: 24.25vw;
+
+  /* iframe:hover {
+    background-color: black;
+  } */
 `
 
 const ValueCard = styled.div<{
@@ -19,8 +23,8 @@ const ValueCard = styled.div<{
   max-width: 24.25vw;
   height: 15vw;
   font-weight: 300;
-  background-color: ${(props) => props.toggleInfo ? "#000" : "#FFDD00"};
-  color: ${(props) => props.toggleInfo ? "#FFDD00" : "#000"};
+  background-color: #FFDD00;
+  color: #000;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -29,6 +33,8 @@ const ValueCard = styled.div<{
 
   &:hover {
     cursor: pointer;
+    background-color: #000;
+    color: #FFDD00;
   }
 `;
 
@@ -42,7 +48,7 @@ const ValueDescription = styled.div<{
   left: 16vw;
   rotate: 270deg;
   font-size: 1vw;
-  color: ${(props) => props.toggleInfo ? "#FFDD00" : "#000"};
+  color: #FFDD00;
 `;
 
 
