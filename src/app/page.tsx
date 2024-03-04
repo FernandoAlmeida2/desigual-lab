@@ -6,15 +6,18 @@ import { Styles } from "./page.styles";
 import Footer from "@/components/Footer/Footer";
 import ContentTop from "@/components/ContentTop/ContentTop";
 import DesigualMap from "@/components/DesigualMap/DesigualMap";
+import { useSelector } from "react-redux";
+import { RootState } from "@/app/lib/store";
 
 export default function Home() {
   const [preLoading, setPreLoading] = useState(true);
-  const [currentTopic, setCurrentTopic] = useState("initial");
+  //const [currentTopic, setCurrentTopic] = useState("initial");
   const ref = useRef<HTMLDivElement>(null);
+  const { currentTopic } = useSelector((state: RootState) => state.topic);
 
-  function changeTopic(topic: string) {
+  /* function changeTopic(topic: string) {
     setCurrentTopic(topic);
-  }
+  } */
 
   useEffect(() => {
     setTimeout(() => {
@@ -35,14 +38,14 @@ export default function Home() {
   return (
     <>
       {currentTopic === "inequality-map" ? (
-        <DesigualMap changeTopic={changeTopic} />
+        <DesigualMap />
       ) : (
         <Styles.MainContainer currentTopic={currentTopic} ref={ref}>
           <Styles.LogoPMF
             src="/images/logos/Logo_PMF_Ver_Mono_Branco.svg"
             alt="logo pmf"
           />
-          <NavBar changeTopic={changeTopic} currentTopic={currentTopic} />
+          <NavBar />
           <Styles.ContentContainer>
             <ContentTop currentTopic={currentTopic} />
             <Styles.ContainerBottom>
