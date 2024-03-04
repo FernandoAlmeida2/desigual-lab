@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { firaSans } from "./ui/fonts";
 import Script from "next/script";
+import StoreProvider from "./StoreProvider";
 
 export const metadata: Metadata = {
   title: "DesigualLab",
@@ -20,7 +21,9 @@ export default function RootLayout({
     <html lang="pt-BR">
     
       <body className={firaSans.className}>
-        {children} 
+        <StoreProvider>
+           {children}
+        </StoreProvider>
       </body>
 
     </html>
