@@ -16,9 +16,9 @@ export default function ValueCard({value, description}: Props) {
             <div>
                 {value}
             </div>
-            {toggleInfo && <Styles.ValueDescription toggleInfo={toggleInfo}>
+            <Styles.ValueDescription toggleInfo={toggleInfo}>
                 {description}
-            </Styles.ValueDescription>}
+            </Styles.ValueDescription>  
         </Styles.ValueCard>
     )
 }
