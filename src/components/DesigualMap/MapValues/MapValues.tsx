@@ -25,10 +25,10 @@ export default function MapValues({
     <Styles.Container>
       <Styles.HistogramBox>
         <iframe
-          id="iframe-mapa"
+          id="iframe-histogram"
           src={`${IFRAME_BASE_URL}/${histogramPath}`}
-          width="100%"
-          height="100%"
+          width="105%"
+          height="105%"
           style={{
             padding: "1vw",
           }}
