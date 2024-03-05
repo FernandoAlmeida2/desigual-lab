@@ -1,9 +1,9 @@
 /** @type {import('next').NextConfig} */
 
-const cspHeader = `
+/* const cspHeader = `
   default-src 'self';
-  script-src 'self' 'unsafe-eval' 'unsafe-inline';
-  style-src 'self' 'unsafe-inline';
+  script-src 'self';
+  style-src 'self';
   img-src 'self' blob: data:;
   font-src 'self';
   object-src 'none';
@@ -13,23 +13,24 @@ const cspHeader = `
   frame-ancestors 'self';
   block-all-mixed-content;
   upgrade-insecure-requests;
-`;
+`; */
 
 const nextConfig = {
   output: "standalone",
-  /*async headers() {
+  async headers() {
     return [
       {
-        source: '/(.*)',
+        source: "/",
         headers: [
           {
-            key: 'Content-Security-Policy',
-            value: cspHeader.replace(/\n/g, ''),
+            key: "Content-Security-Policy",
+            value:
+              "default-src 'self' https: ; script-src 'self' ; object-src 'none'; frame-src https://datawrapper.dwcdn.net;",
           },
         ],
       },
     ];
-  },*/
+  },
 };
 
 module.exports = nextConfig;
