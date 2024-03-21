@@ -1,8 +1,8 @@
-import { Styles } from "../ContentTop.styles";
+import styles from "../contentTop.module.css";
 
 export default function International() {
   return (
-    <Styles.ContentTop>
+    <div className={styles.contentTop}>
       <h1>Parceiros internacionais</h1>
       <h2>Michael Kremer</h2>
       <p>
@@ -25,26 +25,29 @@ export default function International() {
         <br />
         Member of the National Academy of Sciences, 2020.
         <br />
-        <br />
         Ph.D., Harvard University, 1992.
       </p>
-      <h2>Ryan Cooper</h2>
+      <br />
+      <h2>Benjamin Krause</h2>
       <p>
-        Benjamin Krause, Executive Director, Development Economics Center
+        Executive Director, Development Economics Center
         <a href="https://bfi.uchicago.edu/scholar/benjamin-krause/">
           https://bfi.uchicago.edu/scholar/benjamin-krause/
         </a>
       </p>
+      <br />
       <h2>SCHOLARS</h2>
-      <h2>Diana</h2>
+      <br />
+      <h2>Guthrie Gray-Lobe</h2>
       <p>
-        Mueses Guthrie Gray-Lobe, Research Associate and Lead Researcher,
+        Research Associate and Lead Researcher,
         Development Innovation Lab,
         <br />
         <a href="https://bfi.uchicago.edu/scholar/guthrie-gray-lobe/">
           https://bfi.uchicago.edu/scholar/guthrie-gray-lobe/
         </a>
       </p>
+      <br />
       <h2>Alexandre Simoes Gomes Junior</h2>
       <p>
         Research Professional, Development Innovation Lab,
@@ -53,7 +56,7 @@ export default function International() {
           https://bfi.uchicago.edu/scholar/alexandre-simoes-gomes-junior/
         </a>
       </p>
-      <h2>Alexandre Simoes Gomes Junior</h2>
+      <br />
       <h2>Matheus Proença</h2>
       <p>
         Predoctoral Research Professional, Development Innovation Lab
@@ -62,6 +65,6 @@ export default function International() {
           https://bfi.uchicago.edu/scholar/matheus-hoch-de-proenca
         </a>
       </p>
-    </Styles.ContentTop>
+    </div>
   );
 }
