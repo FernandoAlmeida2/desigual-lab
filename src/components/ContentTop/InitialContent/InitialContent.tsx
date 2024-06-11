@@ -1,13 +1,13 @@
-import { Styles } from "./InitialContent.styles";
+import styles from "./initialContent.module.css";
 
 export default function InitialContent() {
   return (
-    <Styles.TitleText>
+    <div className={styles.titleText}>
       Um ponto
       <br />
-      fora
+      fora da
       <br />
-      da curva.
-    </Styles.TitleText>
+      curva.
+    </div>
   );
 }

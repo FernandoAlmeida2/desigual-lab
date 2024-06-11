@@ -1,0 +1,21 @@
+.container {
+  width: 100vw;
+  padding: 0.6vw;
+}
+
+.containerTop {
+  display: flex;
+  gap: 1vw;
+  padding-bottom: 0.5vw;
+}
+
+.initialImgRight {
+  width: 48vw;
+  height: 39.5vw;
+  object-fit: cover;
+}
+
+.initialImgBottom {
+  width: 98.9vw;
+  object-fit: cover;
+}

@@ -3,15 +3,15 @@
 import MapContent from "./MapContent/MapContent";
 import MapValues from "./MapValues/MapValues";
 import TabPanel from "./TabPanel/TabPanel";
-import { Styles } from "./DesigualMap.styles";
+import styles from "./desigualMap.module.css";
 import { useState, useRef, useEffect } from "react";
-import { indicatorsList } from "@/app/lib/placeholder-data";
+import { indicatorsList } from "@/lib/placeholder-data";
 
-type Props = {
+/* type Props = {
   changeTopic: Function;
-};
+}; */
 
-export default function DesigualMap({ changeTopic }: Props) {
+export default function DesigualMap() {
   const [selectedSubject, setSelectedSubject] = useState("none");
   const [selectedIndicator, setSelectedIndicator] = useState("none");
   const ref = useRef<HTMLDivElement>(null);
@@ -56,14 +56,13 @@ export default function DesigualMap({ changeTopic }: Props) {
   }, []);
 
   return (
-    <Styles.Container ref={ref}>
-      <Styles.ContainerTop>
+    <div className={styles.container} ref={ref}>
+      <div className={styles.containerTop}>
         <TabPanel
           currentIndicator={currentIndicator}
           selectedSubject={selectedSubject}
           changeIndicator={changeIndicator}
           changeSubject={changeSubject}
-          changeTopic={changeTopic}
         />
         {currentIndicator ? (
           <MapContent
@@ -71,12 +70,12 @@ export default function DesigualMap({ changeTopic }: Props) {
             tablePath={currentIndicator.tablePath}
           />
         ) : (
-          <Styles.InitialImgRight
-            src="/images/cover-top-1.png"
+          <img className={styles.initialImgRight}
+            src="/images/cover-map-top.png"
             alt="cover-img"
           />
         )}
-      </Styles.ContainerTop>
+      </div>
       {currentIndicator ? (
         <MapValues
           bestDistrict={currentIndicator.bestDistrict}
@@ -88,11 +87,11 @@ export default function DesigualMap({ changeTopic }: Props) {
           histogramPath={currentIndicator.histogramPath}
         />
       ) : (
-        <Styles.InitialImgBottom
+        <img className={styles.initialImgBottom}
           src="/images/cover-map-bottom.png"
           alt="cover-img"
         />
       )}
-    </Styles.Container>
+    </div>
   );
 }

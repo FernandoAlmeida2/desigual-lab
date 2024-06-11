@@ -1,8 +1,8 @@
 "use client";
 
 import { ChangeEvent, useState } from "react";
-import { Styles } from "./mapContent.style";
-import { IFRAME_BASE_URL } from "@/app/constants/urls";
+import styles from "./mapContent.module.css";
+import { IFRAME_BASE_URL } from "@/constants/urls";
 
 type Props = {
   mapPath: string;
@@ -13,8 +13,8 @@ export default function MapContent({ mapPath, tablePath }: Props) {
   const [itemSelected, setItemSelected] = useState("Mapa");
 
   return (
-    <Styles.Container>
-      <Styles.SelectItem
+    <div className={styles.container}>
+      <select className={styles.selectItem}
           value={itemSelected}
           onChange={(e: ChangeEvent<HTMLSelectElement>) =>
             setItemSelected(e.target.value)
@@ -27,14 +27,14 @@ export default function MapContent({ mapPath, tablePath }: Props) {
           <option value="Tabela">
             Tabela
           </option>
-        </Styles.SelectItem>
+        </select>
       {itemSelected === "Mapa" ? (
         <iframe
           id="iframe-mapa"
           src={`${IFRAME_BASE_URL}/${mapPath}`}
           width="100%"
           height="100%"
-          style={{ background: "#CCE6FF", padding: "5vw"}}
+          style={{ background: "#a5cbeb", padding: "4vw", border: "none"}}
         ></iframe>
       ) : (
         <iframe
@@ -42,9 +42,9 @@ export default function MapContent({ mapPath, tablePath }: Props) {
           src={`${IFRAME_BASE_URL}/${tablePath}`}
           width="100%"
           height="100%"
-          style={{ background: "#FFFCDC", padding: "1vw", border: "0.1vw solid #d5d5d5"}}
+          style={{ background: "#FFFCDC", padding: "2vw", border: "none"}}
         ></iframe>
       )}
-    </Styles.Container>
+    </div>
   );
 }

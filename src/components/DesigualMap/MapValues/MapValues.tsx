@@ -1,6 +1,7 @@
-import { IFRAME_BASE_URL } from "@/app/constants/urls";
-import { Styles } from "./mapValues.style";
+import { IFRAME_BASE_URL } from "@/constants/urls";
+import styles from "./mapValues.module.css";
 import ValueCard from "./ValueCard";
+import { useState } from "react";
 
 type Props = {
   bestDistrict: string | number;
@@ -21,19 +22,23 @@ export default function MapValues({
   asymmetry,
   histogramPath,
 }: Props) {
+
   return (
-    <Styles.Container>
-      <Styles.HistogramBox>
+    <div
+      className={styles.container}
+    >
+      <div className={styles.histogramBox}>
         <iframe
-          id="iframe-mapa"
+          id="iframe-histogram"
           src={`${IFRAME_BASE_URL}/${histogramPath}`}
-          width="100%"
-          height="100%"
+          width="105%"
+          height="105%"
           style={{
             padding: "1vw",
+            border: "none",
           }}
         ></iframe>
-      </Styles.HistogramBox>
+      </div>
 
       <ValueCard
         value={`${worseValue.toLocaleString(
@@ -46,6 +51,6 @@ export default function MapValues({
         value={asymmetry.toLocaleString("pt-BR")}
         description="ÍNDICE DE DESIGUALDADE"
       />
-    </Styles.Container>
+    </div>
   );
 }

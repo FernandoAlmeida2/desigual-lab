@@ -1,0 +1,128 @@
+.container {
+  width: 50vw;
+  display: flex;
+  flex-direction: column;
+  z-index: 1;
+  position: relative;
+  padding: 2vw 0 0 2vw;
+}
+
+.returnOption {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  font-weight: 300;
+  font-size: 1.2vw;
+  top: 1vw;
+  right: 0vw;
+}
+
+.returnOption:hover {
+  cursor: pointer;
+}
+
+.returnOption span {
+  font-size: 1.5vw;
+}
+
+.logoMap {
+  width: 7vw;
+}
+
+.logoMap:hover {
+  cursor: pointer;
+}
+
+.selectContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5vw;
+}
+
+.moreInfo {
+  margin-top: 4vw;
+}
+
+.lessInfo {
+  margin-top: 8vw;
+}
+
+.selectItem {
+  width: 16.3vw;
+  font-size: 1.1vw;
+  font-weight: 400;
+  border-style: solid;
+  border-width: 0 0 0.1vw 0;
+  border-color: #000;
+  background-color: #fff;
+}
+
+.selectItem:focus {
+  outline: none;
+}
+
+.selectItem:valid {
+  color: #005cca;
+}
+
+.selectItem:invalid {
+  color: gray;
+}
+
+.subtitleText {
+  width: 46vw;
+  font-size: 3vw;
+  line-height: 3.4vw;
+  font-weight: 300;
+  text-align: left;
+}
+
+.plusIcon {
+  color: #005cca;
+  margin-top: 0.5vw;
+  font-size: 1.5vw;
+}
+
+.plusIcon:hover {
+  cursor: pointer;
+}
+
+.minusIcon {
+  color: #005cca;
+  font-size: 1.5vw;
+  margin-top: 0.5vw;
+  margin-bottom: 0.5vw;
+}
+.minusIcon:hover {
+  cursor: pointer;
+}
+
+.infoBox {
+  font-size: 0.8vw;
+  line-height: 1.6vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 2vw;
+  font-weight: 300;
+  font-size: 0.6vw;
+  line-height: 0.8vw;
+}
+
+.infoBox div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2vw;
+}
+
+.infoBox span {
+  font-weight: 400;
+}
+
+.odsIcon {
+  padding: 0 1.5vw;
+}
+
+.odsIcon img {
+  width: 5.72vw;
+}

@@ -1,0 +1,51 @@
+.container {
+  max-width: 100vw;
+  display: flex;
+  justify-content: center;
+  gap: 0.6vw;
+}
+
+.histogramBox {
+  height: 15vw;
+  width: 24.25vw;
+}
+
+/* iframe:hover {
+    background-color: black;
+  } */
+
+.valueCard {
+  width: 24.25vw;
+  max-width: 24.25vw;
+  height: 15vw;
+  font-weight: 300;
+  background-color: #ffdd00;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 6vw;
+  position: relative;
+}
+
+.blackColor {
+  color: #000;
+}
+
+.yellowColor {
+  color: #ffdd00;
+}
+
+.cardHover {
+  background-color: #55b2ff;
+}
+
+
+.valueDescription {
+  position: absolute;
+  font-weight: 400;
+  width: 24.25vw;
+  text-align: center;
+  bottom: 0.6vw;
+  left: 0;
+  font-size: 1vw;
+}

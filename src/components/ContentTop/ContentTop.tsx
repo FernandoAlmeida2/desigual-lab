@@ -1,11 +1,19 @@
 import ContactUs from "../MenuOptions/ContactUs/ContactUs";
 import Presentation from "./Presentation/Presentation";
-import { Styles } from "./ContentTop.styles";
+import styles from "./contentTop.module.css";
 import InitialContent from "./InitialContent/InitialContent";
-import Draw from "./Assignments/Draw";
-import Evaluate from "./Assignments/Evaluate";
-import Accelerate from "./Assignments/Accelerate";
 import Printed from "./Press/Printed";
+import Assignments from "./Assignments/Assignments";
+import Address from "./Address/Address";
+import Regulation from "./Regulation/Regulation";
+import Organization from "./Organization/Organization";
+import AboutUs from "./AboutUs/AboutUs";
+import TechnicalSheet from "./TechnicalSheet/TechnicalSheet";
+import Internal from "./Partners/Internal";
+import External from "./Partners/External";
+import International from "./Partners/International";
+import Decree from "./Legislation/Decree";
+import Memo from "./Legislation/Memo";
 
 type Props = {
   currentTopic: string;
@@ -14,31 +22,48 @@ type Props = {
 export default function ContentTop({ currentTopic }: Props) {
   function RenderMenuOption() {
     switch (currentTopic) {
-      case "presentation":
-        return <Presentation />;
-
-      case "contact":
-        return <ContactUs />;
-      case "projects":
-        return <div>Projetos</div>;
-      case "drawing":
-        return <Draw />;
-      case "evaluate":
-        return <Evaluate />;
-      case "accelerate":
-        return <Accelerate />;
       case "initial":
         return <InitialContent />;
+      case "presentation":
+        return <Presentation />;
+      case "contact":
+        return <ContactUs />;
+      case "assignments":
+        return <Assignments />;
+      case "decree":
+        return <Decree />;
+      case "memo":
+        return <Memo />;
+      case "about-us":
+        return <AboutUs />;
       case "press":
         return <Printed />;
+      case "address":
+        return <Address />;
+      case "tech-sheet":
+        return <TechnicalSheet />;
+      case "regulation":
+        return <Regulation />;
+      case "organization":
+        return <Organization />;
+      case "internal":
+        return <Internal />;
+      case "external":
+        return <External />;
+      case "international":
+        return <International />;
       default:
         return <></>;
     }
   }
 
   return (
-    <Styles.Container currentTopic={currentTopic}>
+    <div
+      className={`${styles.container} ${
+        currentTopic === "initial" ? styles.layoutInitial : styles.layoutFinal
+      }`}
+    >
       {RenderMenuOption()}
-    </Styles.Container>
+    </div>
   );
 }

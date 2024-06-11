@@ -1,0 +1,98 @@
+image: quay.fortaleza.ce.gov.br/cogect/origin-cli
+
+stages:
+  - scan
+  - deploy
+  - dev
+  - hom
+  - producao
+scansonar:   # This job runs in the test stage.
+  image: sonarsource/sonar-scanner-cli:4.6
+  stage: scan   # It only starts when the job in the build stage completes successfully.
+  script:
+    - sonar-scanner  -Dsonar.projectKey=$ORGAO-$PROJECT_NAME-$AMB -Dsonar.sources=. -Dsonar.host.url=https://dev-sonarqube.fortaleza.ce.gov.br -Dsonar.login=$SONAR_LOGIN
+  tags:
+    - openshift-np  
+  variables:
+    AMB: dev
+    EXECUTAR: ""
+  rules:
+    - if: $CI_COMMIT_BRANCH  == "dev" && $EXECUTAR == "qualidade"
+#DESENVOLVIMENTO
+.autdev: &autdev
+    before_script:
+    - oc login --server="$OPENSHIFT_SERVER_NP" --insecure-skip-tls-verify --username="$USERNAME_OCP" --password="$PASSWORD_OCP"
+    - oc project "$ORGAO-$PROJECT_NAME-$AMB" 2> /dev/null || oc adm new-project "$ORGAO-$PROJECT_NAME-$AMB" --node-selector=env=dev
+    script:
+    - "oc get services $APP 2> /dev/null || oc new-app  . --name=$APP --strategy=docker"
+    - sleep 30
+    - "oc start-build $APP --from-dir=. --follow"
+#DESENVOLVIMENTO
+dev: 
+  <<: *autdev
+  stage: dev
+  allow_failure: true
+  tags:
+    - openshift-np
+  variables:  
+    APP: app-desiguallab
+    AMB: dev
+    APPDOMAIN: apps.np-ocp.fortaleza.ce.gov.br
+  after_script:
+    - oc get route $AMB-$PROJECT_NAME.$ORGAO.fortaleza.ce.gov.br 2> /dev/null || oc create route edge $AMB-$PROJECT_NAME.$ORGAO.fortaleza.ce.gov.br --service=$APP --insecure-policy='None' --hostname=$AMB-$PROJECT_NAME.$ORGAO.fortaleza.ce.gov.br
+  rules:
+    - if: $CI_COMMIT_BRANCH  == "dev"
+
+#HOMOLOGAÇÃO
+.authom: &authom
+    before_script:
+    - oc login --server="$OPENSHIFT_SERVER_NP" --insecure-skip-tls-verify --username="$USERNAME_OCP" --password="$PASSWORD_OCP"
+    - oc project "$ORGAO-$PROJECT_NAME-$AMB" 2> /dev/null || oc adm new-project "$ORGAO-$PROJECT_NAME-$AMB" --node-selector=env=$AMB
+
+    script:
+    - oc project "$ORGAO-$PROJECT_NAME-$AMB"
+    - "oc get services $APP 2> /dev/null || oc new-app . --strategy=docker --name=$APP"
+    - sleep 30
+    - "oc start-build $APP --from-dir=. --follow"
+    - oc get routes $APP 2> /dev/null || oc create route edge --service=$APP  --insecure-policy='None' --hostname=$AMB-$PROJECT_NAME-$ORGAO.$APPDOMAIN -n  "$ORGAO-$PROJECT_NAME-$AMB"
+hom:
+  <<: *authom
+  stage: hom
+  allow_failure: true
+  tags:
+    - openshift-np
+  variables:  
+    APP: aip-desuguallab
+    AMB: hom
+    APPDOMAIN: apps.np-ocp.fortaleza.ce.gov.br
+  after_script:
+    - oc get route $AMB-$PROJECT_NAME.$ORGAO.fortaleza.ce.gov.br 2> /dev/null || oc create route edge $AMB-$PROJECT_NAME.$ORGAO.fortaleza.ce.gov.br --service=$APP --insecure-policy='None' --hostname=$AMB-$PROJECT_NAME.$ORGAO.fortaleza.ce.gov.br -n  "$ORGAO-$PROJECT_NAME-$AMB"
+  rules:
+    - if: $CI_COMMIT_BRANCH  == "hom"
+
+#PRODUÇÃO
+.autprd: &autprd
+    before_script:
+    - oc login --server="$OPENSHIFT_SERVER_PRD" --insecure-skip-tls-verify --username="$USERNAME_OCP" --password="$PASSWORD_OCP"
+    - oc project "$ORGAO-$PROJECT_NAME-$AMB" 2> /dev/null || oc adm new-project "$ORGAO-$PROJECT_NAME-$AMB" --node-selector=env=publica
+
+    script:
+    - oc project "$ORGAO-$PROJECT_NAME-$AMB"
+    - "oc get services $APP 2> /dev/null || oc new-app . --strategy=docker --name=$APP"
+    - sleep 30
+    - "oc start-build $APP --from-dir=. --follow"
+
+prd:
+  <<: *autprd
+  stage: producao
+  allow_failure: true
+  tags:
+    - openshift
+  variables:  
+    APP: aip-desuguallab
+    AMB: prd
+    APPDOMAIN: apps.ocp.fortaleza.ce.gov.br
+  after_script:
+    - oc get route $PROJECT_NAME-$ORGAO.fortaleza.ce.gov.br 2> /dev/null || oc create route edge $PROJECT_NAME-$ORGAO.fortaleza.ce.gov.br --service=$APP --insecure-policy='None' --hostname=$PROJECT_NAME.$ORGAO.fortaleza.ce.gov.br
+  rules:
+    - when: manual

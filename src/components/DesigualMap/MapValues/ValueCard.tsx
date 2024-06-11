@@ -1,24 +1,31 @@
-"use client"
+"use client";
 
 import { useState } from "react";
-import { Styles } from "./mapValues.style";
+import styles from "./mapValues.module.css";
 
 type Props = {
-    value: string;
-    description: string;
-}
+  value: string;
+  description: string;
+};
 
-export default function ValueCard({value, description}: Props) {
-    const [toggleInfo, setToggleInfo] = useState(false);
+export default function ValueCard({ value, description }: Props) {
+  const [toggleInfo, setToggleInfo] = useState(false);
+  const [cardHover, setCardHover] = useState(false);
 
-    return(
-        <Styles.ValueCard onClick={() => setToggleInfo(!toggleInfo)} toggleInfo={toggleInfo}>
-            <div>
-                {value}
-            </div>
-            {toggleInfo && <Styles.ValueDescription toggleInfo={toggleInfo}>
-                {description}
-            </Styles.ValueDescription>}
-        </Styles.ValueCard>
-    )
+  return (
+    <div
+      className={`${styles.valueCard} ${cardHover ? styles.cardHover : ""}`}
+      onMouseEnter={() => setCardHover(true)}
+      onMouseLeave={() => setCardHover(false)}
+    >
+      <div>{value}</div>
+      <div
+        className={`${styles.valueDescription} ${
+          cardHover ? styles.blackColor : styles.yellowColor
+        }`}
+      >
+        {description}
+      </div>
+    </div>
+  );
 }

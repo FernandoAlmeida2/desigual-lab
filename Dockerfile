@@ -16,7 +16,7 @@
 
 # Install dependencies only when needed
 FROM registry.access.redhat.com/ubi8/nodejs-18 AS deps
-USER 0
+USER root
 WORKDIR /app
 
 # Install dependencies based on the preferred package manager
@@ -30,7 +30,7 @@ RUN \
 
 # Rebuild the source code only when needed
 FROM registry.access.redhat.com/ubi8/nodejs-18 AS builder
-USER 0
+USER root
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
@@ -48,7 +48,7 @@ RUN npm run build
 
 # Production image, copy all the files and run next
 FROM registry.access.redhat.com/ubi8/nodejs-18-minimal AS runner
-USER 0
+USER root
 WORKDIR /app
 
 ENV NODE_ENV production
@@ -62,7 +62,7 @@ COPY --from=builder /app/public ./public
 COPY --from=builder --chown=1001:1001 /app/.next/standalone ./
 COPY --from=builder --chown=1001:1001 /app/.next/static ./.next/static
 
-USER 0
+USER 1001
 
 EXPOSE 3000
 

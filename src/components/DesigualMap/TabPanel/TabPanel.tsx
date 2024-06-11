@@ -1,16 +1,18 @@
 "use client";
 
 import { ChangeEvent, useState } from "react";
-import { Styles } from "./tabPanel.style";
-import { indicatorsList } from "@/app/lib/placeholder-data";
-import { Indicator } from "@/app/lib/definitions";
+import styles from "./tabPanel.module.css";
+import { indicatorsList } from "@/lib/placeholder-data";
+import { Indicator } from "@/lib/definitions";
+import { useDispatch } from "react-redux";
+import { changeTopic } from "@/lib/features/topics/topicSlice";
+import { FaMinus, FaPlus } from "react-icons/fa";
 
 type Props = {
   selectedSubject: string;
   changeSubject: Function;
   currentIndicator: Indicator | null;
   changeIndicator: Function;
-  changeTopic: Function;
 };
 
 export default function TabPanel({
@@ -18,26 +20,45 @@ export default function TabPanel({
   changeSubject,
   currentIndicator,
   changeIndicator,
-  changeTopic,
 }: Props) {
   const [toggleInfo, setToggleInfo] = useState(false);
+  const dispatch = useDispatch();
 
   return (
-    <Styles.Container>
-      <Styles.ReturnOption onClick={() => changeTopic("initial")}>
+    <div className={styles.container}>
+      <div
+        className={styles.returnOption}
+        onClick={() => dispatch(changeTopic("initial"))}
+      >
         <span>&lt;&nbsp;</span>
         Desigual Lab
-      </Styles.ReturnOption>
-      <Styles.LogoMap src="/images/logos/logo-map.svg" alt="logo panel" />
-      <Styles.SelectContainer toggleInfo={toggleInfo}>
-        <Styles.SelectItem
+      </div>
+      <img
+        className={styles.logoMap}
+        src="/images/logos/logo-map.svg"
+        alt="logo panel"
+        onClick={() => dispatch(changeTopic("initial"))}
+      />
+      <div
+        className={`${styles.selectContainer} ${
+          toggleInfo ? styles.moreInfo : styles.lessInfo
+        }`}
+      >
+        <select className={styles.selectItem}
           value={selectedSubject === "none" ? "" : selectedSubject}
           onChange={(e: ChangeEvent<HTMLSelectElement>) =>
             changeSubject(e.target.value)
           }
           required
         >
-          <option value="" disabled selected hidden>
+          <option
+            value=""
+            selected
+            disabled
+            hidden
+            /* disabled={selectedSubject === "none"}
+            hidden={selectedSubject === "none"} */
+          >
             Eixo temático
           </option>
           {indicatorsList.map((indicatorGroup, index) => (
@@ -45,9 +66,9 @@ export default function TabPanel({
               {indicatorGroup.subject}
             </option>
           ))}
-        </Styles.SelectItem>
+        </select>
 
-        <Styles.SelectItem
+        <select className={styles.selectItem}
           value={currentIndicator ? currentIndicator.title : ""}
           onChange={(e: ChangeEvent<HTMLSelectElement>) =>
             changeIndicator(e.target.value)
@@ -55,7 +76,14 @@ export default function TabPanel({
           required
           disabled={selectedSubject === "none"}
         >
-          <option value="" disabled selected hidden>
+          <option
+            value=""
+            selected
+            disabled
+            hidden
+            /* disabled={selectedSubject === "none"}
+            hidden={selectedSubject === "none"} */
+          >
             Indicador
           </option>
           {selectedSubject !== "none" &&
@@ -68,17 +96,17 @@ export default function TabPanel({
                   {indicator.title}
                 </option>
               ))}
-        </Styles.SelectItem>
+        </select>
         {currentIndicator && (
-          <Styles.SubtitleText>{currentIndicator.subtitle}</Styles.SubtitleText>
+          <div className={styles.subtitleText}>{currentIndicator.subtitle}</div>
         )}
-      </Styles.SelectContainer>
+      </div>
 
       {currentIndicator &&
         (toggleInfo ? (
           <div>
-            <Styles.MinusIcon onClick={() => setToggleInfo(!toggleInfo)} />
-            <Styles.InfoBox>
+            <FaMinus className={styles.minusIcon} onClick={() => setToggleInfo(!toggleInfo)} />
+            <div className={styles.infoBox}>
               <div>
                 <p>
                   <span>ANO-BASE:</span> {currentIndicator.year}
@@ -93,14 +121,14 @@ export default function TabPanel({
                   <span>Observações:</span> {currentIndicator.remarks}
                 </p>
               </div>
-              <Styles.OdsIcon>
+              <div className={styles.odsIcon}>
                 <img src={`/images/logos_ods/${currentIndicator.odsPath}`} />
-              </Styles.OdsIcon>
-            </Styles.InfoBox>
+              </div>
+            </div>
           </div>
         ) : (
-          <Styles.PlusIcon onClick={() => setToggleInfo(!toggleInfo)} />
+          <FaPlus className={styles.plusIcon} onClick={() => setToggleInfo(!toggleInfo)} />
         ))}
-    </Styles.Container>
+    </div>
   );
 }
